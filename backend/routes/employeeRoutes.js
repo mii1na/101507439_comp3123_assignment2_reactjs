@@ -6,6 +6,7 @@ const checkRequestFields = require("../middleware/requestFields");
 
 const {
     getEmployees,
+    searchEmployees,
     createEmployee,
     getEmployeeById,
     updateEmployee,
@@ -15,6 +16,7 @@ const {
 const {
     employeeValidation,
     employeeUpdateValidation,
+    employeeSearchValidation,
     employeeIdValidation,
     deleteEmployeeValidation,
     checkValidation
@@ -35,6 +37,14 @@ router.use(auth);
 
 // Get all employees
 router.get("/employees", getEmployees);
+
+// Search employees - Assignment 2
+router.get(
+    "/employees/search",
+    employeeSearchValidation,
+    checkValidation,
+    searchEmployees
+);
 
 // Create employee
 router.post(

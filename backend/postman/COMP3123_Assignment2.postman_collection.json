@@ -1,0 +1,1918 @@
+{
+  "info": {
+    "_postman_id": "9c32fa72-e8bc-496d-8e30-fe2a534cb597",
+    "name": "COMP3123_Assignment2",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58771841",
+    "_collection_link": "https://go.postman.co/collection/58771841-9c32fa72-e8bc-496d-8e30-fe2a534cb597?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "User Signup",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"minafahim20\",\n  \"email\": \"fahim123@example.com\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login with username",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 200) {\n    pm.collectionVariables.set(\n        \"json_web_token_07qt\",\n        pm.response.json().token\n    );\n}",
+              "if (pm.response.code === 200) {",
+              "    pm.collectionVariables.set(\"json_web_token_07qt\", pm.response.json().token);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"minafahim20\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Duplicate Email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"mina2004\",\n  \"email\": \"fahim123@example.com\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup Duplicate Username",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"minafahim20\",\n  \"email\": \"fahim123@example.com\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup Invalid Email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"minatest2026\",\n  \"email\": \"invalidemail\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup Invalid Password",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"minatest2026\",\n  \"email\": \"minatest2026@example.com\",\n  \"password\": \"123\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup Missing Required Fields",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"minatest2026\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login with email",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"fahim123@example.com\",\n  \"password\": \"TestPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 200) {",
+              "    pm.collectionVariables.set(\"json_web_token_07qt\", pm.response.json().token);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invalid credentials",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"minafahim20\",\n  \"password\": \"WrongPass123!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing credentials",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"minafahim20\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing JWT",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid JWT",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "invalid-token-12345",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Expired JWT",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{expired_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_name\": \"Setare\",\n  \"last_name\": \"Dari\",\n  \"email\": \"saterdae@example.com\",\n  \"position\": \"Software Developer\",\n  \"salary\": 75000,\n  \"date_of_joining\": \"2026-10-01\",\n  \"department\": \"IT\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    pm.collectionVariables.set(\"crud_employee_id\", pm.response.json().employee._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create a test employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"first_name\": \"Sarah\",\n    \"last_name\": \"Wilson\",\n    \"email\": \"sarah@example.com\",\n    \"position\": \"Software Developer\",\n    \"salary\": 75000,\n    \"date_of_joining\": \"2026-01-15\",\n    \"department\": \"Engineering\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": [],
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "    pm.collectionVariables.set(\"employee_a_id\", pm.response.json().employee._id);",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Employee by ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{crud_employee_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{crud_employee_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"position\": \"Senior Project Manager\",\n  \"salary\": 105000,\n  \"department\": \"Operations\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{crud_employee_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{crud_employee_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Missing Employee Fields",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"first_name\": \"Sara\",\n  \"last_name\": \"Ahmadi\",\n  \"email\": \"sara.ahmadi@example.com\",\n  \"position\": \"Software Developer\",\n  \"salary\": 75000,\n  \"date_of_joining\": \"2026-10-01\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Employee Email",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"first_name\": \"Sara\",\n  \"last_name\": \"Ahmadi\",\n  \"email\": \"invalidemail\",\n  \"position\": \"Software Developer\",\n  \"salary\": 75000,\n  \"date_of_joining\": \"2026-10-01\",\n  \"department\": \"IT\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Employees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Salary",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"first_name\": \"Sara\",\n  \"last_name\": \"Ahmadi\",\n  \"email\": \"sara.ahmadi@example.com\",\n  \"position\": \"Software Developer\",\n  \"salary\": -5000,\n  \"date_of_joining\": \"2026-10-01\",\n  \"department\": \"IT\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Date",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"first_name\": \"Sara\",\n  \"last_name\": \"Ahmadi\",\n  \"email\": \"sara.ahmadi@example.com\",\n  \"position\": \"Software Developer\",\n  \"salary\": 75000,\n  \"date_of_joining\": \"not-a-date\",\n  \"department\": \"IT\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid Employee ID",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/12345",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "12345"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Signup User B",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"parisaahmadi26\",\n  \"email\": \"parisa.ahmadi26@example.com\",\n  \"password\": \"TestPass456!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/signup",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "signup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User B",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 200) {\n    pm.collectionVariables.set(\n        \"json_web_token_1due\",\n        pm.response.json().token\n    );\n\n    pm.test(\"User B token saved\", function () {\n        pm.expect(pm.response.json().user.username)\n            .to.eql(\"parisaahmadi26\");\n\n        pm.expect(pm.variables.get(\"json_web_token_1due\"))\n            .to.eql(pm.response.json().token);\n    });\n}",
+              "if (pm.response.code === 200) {",
+              "    pm.collectionVariables.set(\"json_web_token_1due\", pm.response.json().token);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"parisaahmadi26\",\n  \"password\": \"TestPass456!\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Employee User B",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "",
+              "if (pm.response.code === 201) {",
+              "    pm.collectionVariables.set(\"employee_b_id\", pm.response.json().employee._id);",
+              "}"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"first_name\": \"Niloofar\",\n  \"last_name\": \"Karimi\",\n  \"email\": \"niloofar.karimi@example.com\",\n  \"position\": \"Software Engineer\",\n  \"salary\": 82000,\n  \"date_of_joining\": \"2026-09-01\",\n  \"department\": \"IT\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Non-existing Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/000000000000000000000001",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "000000000000000000000001"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User A Accesses User B Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{employee_b_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{employee_b_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User A Sees Only Their Own Employees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User B Sees Own Employees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Helmet Security Headers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/health",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "health"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Unknown Route",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/unknown",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "unknown"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Invalid JSON Format",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"username\": \"minafahim20\",\n  \"password\": \"TestPass123!\"\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/user/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "user",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update the employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"position\": \"Senior Software Developer\",\n  \"salary\": 95000,\n  \"department\": \"Engineering\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{crud_employee_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{crud_employee_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Verify Employee After Update",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{crud_employee_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{crud_employee_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees?eid={{crud_employee_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "eid",
+              "value": "{{crud_employee_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Unexpected Employee Field",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\n{\n  \"first_name\": \"Amir\",\n  \"last_name\": \"Hosseini\",\n  \"email\": \"amir.hosseini@example.com\",\n  \"position\": \"Software Developer\",\n  \"salary\": 80000,\n  \"date_of_joining\": \"2026-10-01\",\n  \"department\": \"IT\",\n  \"role\": \"admin\"\n}\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test search by department",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=Engineering",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": "Engineering"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Search by Position",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?position=developer",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "position",
+              "value": "developer"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Search by Department and Position",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=Engineering&position=Developer",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": "Engineering"
+            },
+            {
+              "key": "position",
+              "value": "Developer"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Search No Results",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=Marketing",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": "Marketing"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test invalid search parameters",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": ""
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Search Regex Safety",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=.*",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": ".*"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User B Search Own Employees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=IT",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": "IT"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User A Search Own Employees",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/search?department=IT",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "department",
+              "value": "IT"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User A Updates User B Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"position\": \"Senior Software Engineer\",\n    \"salary\": 110000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{employee_b_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{employee_b_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User A Deletes User B Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_07qt}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees?eid={{employee_b_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "eid",
+              "value": "{{employee_b_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User B Accesses User A's Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{employee_a_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{employee_a_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User B Updates User A Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"position\": \"Senior Developer\",\n    \"salary\": 95000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees/{{employee_a_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees",
+            "{{employee_a_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User B Deletes User A Employee",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{json_web_token_1due}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5001/api/v1/emp/employees?eid={{employee_a_id}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5001",
+          "path": [
+            "api",
+            "v1",
+            "emp",
+            "employees"
+          ],
+          "query": [
+            {
+              "key": "eid",
+              "value": "{{employee_a_id}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_00sn"
+    },
+    {
+      "key": "json_web_token_0tv1"
+    },
+    {
+      "key": "json_web_token_0iyc"
+    },
+    {
+      "key": "json_web_token_0qow"
+    },
+    {
+      "key": "json_web_token_0cme"
+    },
+    {
+      "key": "json_web_token_07qt"
+    },
+    {
+      "key": "json_web_token_1due"
+    },
+    {
+      "key": "json_web_token_08wt"
+    },
+    {
+      "key": "json_web_token_01i0"
+    },
+    {
+      "key": "auth_secret_033f",
+      "secret": true
+    },
+    {
+      "key": "employee_a_id",
+      "value": ""
+    },
+    {
+      "key": "employee_b_id",
+      "value": ""
+    },
+    {
+      "key": "crud_employee_id",
+      "value": ""
+    },
+    {
+      "key": "expired_token",
+      "value": ""
+    }
+  ]
+}

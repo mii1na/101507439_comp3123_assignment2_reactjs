@@ -23,7 +23,6 @@ const checkValidation = (req, res, next) => {
     next();
 };
 
-
 // User signup validation
 const signupValidation = [
     body("username")
@@ -166,6 +165,35 @@ const employeeUpdateValidation = [
         .notEmpty()
 ];
 
+// Employee search validation - Assignment 2
+const employeeSearchValidation = [
+    query().custom((value) => {
+        const allowedFields = ["department", "position"];
+        const fields = Object.keys(value);
+
+        if (fields.length === 0) {
+            throw new Error("Department or position is required");
+        }
+
+        for (const field of fields) {
+            if (!allowedFields.includes(field)) {
+                throw new Error("Invalid search parameter");
+            }
+
+            if (
+                typeof value[field] !== "string" ||
+                value[field].trim().length === 0 ||
+                value[field].trim().length > 100
+            ) {
+                throw new Error(
+                    `${field} must contain 1 to 100 characters`
+                );
+            }
+        }
+
+        return true;
+    })
+];
 
 // Employee ID validation
 const employeeIdValidation = [
@@ -187,6 +215,7 @@ module.exports = {
     loginValidation,
     employeeValidation,
     employeeUpdateValidation,
+    employeeSearchValidation,
     employeeIdValidation,
     deleteEmployeeValidation
 };

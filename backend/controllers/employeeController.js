@@ -17,6 +17,44 @@ const getEmployees = async (req, res, next) => {
     }
 };
 
+// Escape special characters for safe regex searching
+const escapeRegex = (value) => {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
+// Search employees - Assignment 2
+const searchEmployees = async (req, res, next) => {
+    try {
+        const { department, position } = req.query;
+
+        const filter = {
+            user: req.userId
+        };
+
+        if (department) {
+            filter.department = {
+                $regex: escapeRegex(department.trim()),
+                $options: "i"
+            };
+        }
+
+        if (position) {
+            filter.position = {
+                $regex: escapeRegex(position.trim()),
+                $options: "i"
+            };
+        }
+
+        const employees = await Employee.find(filter);
+
+        logEvent("Employee search completed successfully");
+
+        res.status(200).json(employees);
+    } catch (error) {
+        next(error);
+    }
+};
+
 // Create an employee
 const createEmployee = async (req, res, next) => {
     try {
@@ -215,6 +253,7 @@ const deleteEmployee = async (req, res, next) => {
 
 module.exports = {
     getEmployees,
+    searchEmployees,
     createEmployee,
     getEmployeeById,
     updateEmployee,
