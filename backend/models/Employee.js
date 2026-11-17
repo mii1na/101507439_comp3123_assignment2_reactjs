@@ -1,4 +1,3 @@
-
 const mongoose = require("mongoose");
 
 const employeeSchema = new mongoose.Schema(
@@ -38,6 +37,10 @@ const employeeSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true
+        },
+        profile_picture: {
+            type: String,
+            default: null
         },
         user: {
             type: mongoose.Schema.Types.ObjectId,

@@ -2,9 +2,11 @@ require("dotenv").config();
 
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 const mongoose = require("mongoose");
-const connectDB = require("./config/db");
+const path = require("node:path");
 
+const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
 
@@ -23,11 +25,30 @@ const app = express();
 // Security
 app.use(helmet());
 
+// CORS configuration - Assignment 2
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+}));
+
 // Request logging
 app.use(requestLogger);
 
 // Parse JSON requests
 app.use(express.json());
+
+// Serve uploaded profile pictures - Assignment 2
+app.use(
+    "/uploads",
+    helmet.crossOriginResourcePolicy({
+        policy: "cross-origin"
+    }),
+    express.static(path.join(__dirname, "uploads"), {
+        index: false,
+        dotfiles: "ignore"
+    })
+);
 
 // Health check
 app.get("/health", (req, res) => {
@@ -43,6 +64,7 @@ app.use(async (req, res, next) => {
         if (mongoose.connection.readyState !== 1) {
             await connectDB();
         }
+
         next();
     } catch (error) {
         next(error);
@@ -57,7 +79,7 @@ app.use("/api/v1/emp", employeeRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5001;
 
 // Start the server locally
 if (process.env.VERCEL !== "1") {
@@ -74,5 +96,5 @@ if (process.env.VERCEL !== "1") {
         });
 }
 
-// Export Express app for Vercel
+// Export Express app
 module.exports = app;

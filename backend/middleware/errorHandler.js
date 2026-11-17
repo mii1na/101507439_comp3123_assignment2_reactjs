@@ -13,6 +13,36 @@ const errorHandler = (err, req, res, next) => {
         return next(err);
     }
 
+    // Profile picture validation error
+    if (err.code === "INVALID_PROFILE_PICTURE") {
+        logEvent("Invalid profile picture upload", "WARN");
+
+        return res.status(400).json({
+            message: err.message
+        });
+    }
+
+    // Multer file upload errors
+    if (err.name === "MulterError") {
+        logEvent("File upload rejected", "WARN");
+
+        if (err.code === "LIMIT_FILE_SIZE") {
+            return res.status(413).json({
+                message: "Profile picture must not exceed 2 MB"
+            });
+        }
+
+        if (err.code === "LIMIT_UNEXPECTED_FILE") {
+            return res.status(400).json({
+                message: "Only one profile_picture file is allowed"
+            });
+        }
+
+        return res.status(400).json({
+            message: "Invalid file upload request"
+        });
+    }
+
     // Invalid JSON
     if (err.type === "entity.parse.failed") {
         logEvent("Invalid JSON request", "WARN");

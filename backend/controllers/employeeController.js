@@ -2,6 +2,20 @@ const mongoose = require("mongoose");
 const Employee = require("../models/Employee");
 const { logEvent } = require("../middleware/requestLogger");
 
+const {
+    saveProfilePicture,
+    deleteProfilePicture
+} = require("../utils/imageStorage");
+
+// Safely remove an uploaded picture
+const removePictureSafely = async (picturePath) => {
+    try {
+        await deleteProfilePicture(picturePath);
+    } catch (error) {
+        logEvent("Profile picture cleanup failed", "WARN");
+    }
+};
+
 // Get all employees belonging to the logged-in user
 const getEmployees = async (req, res, next) => {
     try {
@@ -55,8 +69,10 @@ const searchEmployees = async (req, res, next) => {
     }
 };
 
-// Create an employee
+// Create an employee with an optional profile picture
 const createEmployee = async (req, res, next) => {
+    let newPicture = null;
+
     try {
         const {
             first_name,
@@ -68,6 +84,8 @@ const createEmployee = async (req, res, next) => {
             department
         } = req.body;
 
+        newPicture = await saveProfilePicture(req.file);
+
         const employee = await Employee.create({
             first_name,
             last_name,
@@ -76,8 +94,11 @@ const createEmployee = async (req, res, next) => {
             salary,
             date_of_joining,
             department,
+            profile_picture: newPicture,
             user: req.userId
         });
+
+        newPicture = null;
 
         logEvent("Employee created successfully");
 
@@ -86,6 +107,7 @@ const createEmployee = async (req, res, next) => {
             employee
         });
     } catch (error) {
+        await removePictureSafely(newPicture);
         next(error);
     }
 };
@@ -125,8 +147,10 @@ const getEmployeeById = async (req, res, next) => {
     }
 };
 
-// Update an employee
+// Update an employee and optionally replace the profile picture
 const updateEmployee = async (req, res, next) => {
+    let newPicture = null;
+
     try {
         const { eid } = req.params;
 
@@ -170,6 +194,20 @@ const updateEmployee = async (req, res, next) => {
             }
         });
 
+        const filter = {
+            _id: eid,
+            user: req.userId
+        };
+
+        // Save a replacement picture if provided
+        if (req.file) {
+            newPicture = await saveProfilePicture(req.file);
+            updates.profile_picture = newPicture;
+
+            // Prevent conflicting picture replacements
+            filter.profile_picture = employee.profile_picture ?? null;
+        }
+
         if (Object.keys(updates).length === 0) {
             return res.status(400).json({
                 message: "No valid fields provided"
@@ -177,10 +215,7 @@ const updateEmployee = async (req, res, next) => {
         }
 
         const updatedEmployee = await Employee.findOneAndUpdate(
-            {
-                _id: eid,
-                user: req.userId
-            },
+            filter,
             updates,
             {
                 new: true,
@@ -189,9 +224,21 @@ const updateEmployee = async (req, res, next) => {
         );
 
         if (!updatedEmployee) {
-            return res.status(404).json({
-                message: "Employee not found"
+            await removePictureSafely(newPicture);
+            newPicture = null;
+
+            return res.status(req.file ? 409 : 404).json({
+                message: req.file
+                    ? "Employee changed or no longer exists. Please try again."
+                    : "Employee not found"
             });
+        }
+
+        newPicture = null;
+
+        // Remove the previous picture after a successful update
+        if (req.file) {
+            await removePictureSafely(employee.profile_picture);
         }
 
         logEvent("Employee updated successfully");
@@ -201,11 +248,12 @@ const updateEmployee = async (req, res, next) => {
             employee: updatedEmployee
         });
     } catch (error) {
+        await removePictureSafely(newPicture);
         next(error);
     }
 };
 
-// Delete an employee
+// Delete an employee and remove the stored profile picture
 const deleteEmployee = async (req, res, next) => {
     try {
         const { eid } = req.query;
@@ -242,6 +290,9 @@ const deleteEmployee = async (req, res, next) => {
                 message: "Employee not found"
             });
         }
+
+        // Remove the stored profile picture
+        await removePictureSafely(deletedEmployee.profile_picture);
 
         logEvent("Employee deleted successfully");
 

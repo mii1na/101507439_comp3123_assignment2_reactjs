@@ -5,6 +5,11 @@ const auth = require("../middleware/auth");
 const checkRequestFields = require("../middleware/requestFields");
 
 const {
+    uploadProfilePicture,
+    validateProfilePicture
+} = require("../middleware/upload");
+
+const {
     getEmployees,
     searchEmployees,
     createEmployee,
@@ -38,7 +43,7 @@ router.use(auth);
 // Get all employees
 router.get("/employees", getEmployees);
 
-// Search employees - Assignment 2
+// Search employees
 router.get(
     "/employees/search",
     employeeSearchValidation,
@@ -46,12 +51,14 @@ router.get(
     searchEmployees
 );
 
-// Create employee
+// Create employee with optional profile picture
 router.post(
     "/employees",
+    uploadProfilePicture,
     checkRequestFields(employeeFields),
     employeeValidation,
     checkValidation,
+    validateProfilePicture,
     createEmployee
 );
 
@@ -63,13 +70,16 @@ router.get(
     getEmployeeById
 );
 
-// Update employee
+// Update employee with optional profile picture
 router.put(
     "/employees/:eid",
     employeeIdValidation,
+    checkValidation,
+    uploadProfilePicture,
     checkRequestFields(employeeFields),
     employeeUpdateValidation,
     checkValidation,
+    validateProfilePicture,
     updateEmployee
 );
 
