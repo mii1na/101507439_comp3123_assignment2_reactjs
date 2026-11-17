@@ -25,6 +25,7 @@ api.interceptors.response.use(
 
         if (error.response?.status === 401 && !isAuthRequest) {
             localStorage.removeItem("token");
+            localStorage.removeItem("user");
             window.location.replace("/login");
         }
 

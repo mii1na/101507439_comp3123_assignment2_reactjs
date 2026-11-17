@@ -51,7 +51,7 @@ export default function Login() {
 
             const response = await loginRequest(credentials);
 
-            login(response.data.token);
+            login(response.data.token, response.data.user);
             navigate("/employees", { replace: true });
         } catch (error) {
             setError(getApiError(error));
