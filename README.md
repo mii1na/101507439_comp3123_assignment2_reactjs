@@ -519,3 +519,22 @@ https://github.com/mii1na/101507439_comp3123_assignment2_reactjs
 The repository contains the frontend, backend, Docker files, environment examples, and Postman test resources.
 
 Private `.env` files, `node_modules`, and uploaded user pictures are excluded from Git.
+
+## Sample Test Credentials for Marking
+
+The following account is for assignment testing only.
+
+Username: assignment2_marker
+Email: marker@example.com
+Password: Comp3123Demo!2026
+
+### Instructions for Markers
+
+1. Start the application using Docker Compose.
+2. Open http://localhost:5173.
+3. Log in using the credentials above if the demo database is available.
+4. For a fresh MongoDB database, register this account through the Signup page first.
+5. Test employee CRUD, search, profile picture upload, and logout.
+
+Note: This account is not automatically seeded into a fresh database.
+The credentials are for assignment demonstration only.
