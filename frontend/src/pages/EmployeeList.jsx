@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
     getEmployees,
     deleteEmployee,
@@ -11,6 +11,7 @@ import { getApiError } from "../utils/apiError";
 
 export default function EmployeeList() {
     const location = useLocation();
+    const navigate = useNavigate();
     const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -18,6 +19,15 @@ export default function EmployeeList() {
     const [success, setSuccess] = useState("");
     const [employeeToDelete, setEmployeeToDelete] = useState(null);
     const [searchActive, setSearchActive] = useState(false);
+
+    // Show redirect flash messages once, then clear history state
+    // so they do not reappear after refresh or later actions.
+    useEffect(() => {
+        if (!location.state?.message) return;
+
+        setSuccess(location.state.message);
+        navigate(location.pathname, { replace: true, state: {} });
+    }, [location.state, location.pathname, navigate]);
 
     useEffect(() => {
         let active = true;
@@ -130,12 +140,6 @@ export default function EmployeeList() {
                 onSearch={handleSearch}
                 onClear={handleClearSearch}
             />
-
-            {location.state?.message && (
-                <div className="alert alert-success" role="status">
-                    {location.state.message}
-                </div>
-            )}
 
             {success && (
                 <div className="alert alert-success" role="status">
